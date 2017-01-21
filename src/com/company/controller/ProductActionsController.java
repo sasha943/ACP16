@@ -14,7 +14,7 @@ public interface ProductActionsController {
 
     Map<Integer, ProductModel> removeProduct(long id) throws NoProductFoundException;
 
-    Map<Integer, ProductModel> getProductByType(String type) throws NoProductFoundException;
+    Map<Integer, ProductModel> getProductByType(ProductTypes type) throws NoProductFoundException;
 
     void saveDateToDB(Map<Integer, ProductModel> productList) throws NoProductFoundException, IOException;
 }

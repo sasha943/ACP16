@@ -1,6 +1,8 @@
 package com.company.tests;
 
+import com.company.exceptions.NoProductFoundException;
 import com.company.exceptions.NotUniqueProductException;
+import com.company.model.ProductModel;
 import com.company.model.ProductTypes;
 import com.company.store.Store;
 import org.testng.Assert;
@@ -50,6 +52,18 @@ public class TestStore {
         store.productModelList.clear();
     }
 
+    @Test
+    private void testPositiveRemoveProductMethod() throws NoProductFoundException {
+        ProductModel productModel = new ProductModel(ProductTypes.CAMERA, 0);
+        store.productModelList.put(0, productModel);
+        store.removeProduct(0);
+        Assert.assertNull(store.productModelList);
+    }
 
-
+    @Test
+    private void testPositiveGetProductByType() throws NoProductFoundException {
+        ProductModel productModel = new ProductModel(ProductTypes.CAMERA, 0);
+        store.productModelList.put(0, productModel);
+        Assert.assertEquals(productModel, store.getProductByType(type1Positive));
+    }
 }

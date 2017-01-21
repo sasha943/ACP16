@@ -43,7 +43,12 @@ public class Store implements ProductActionsController {
     }
 
     @Override
-    public Map<Integer, ProductModel> getProductByType(String type) throws NoProductFoundException {
+    public Map<Integer, ProductModel> getProductByType(ProductTypes type) throws NoProductFoundException {
+        for (Integer entry : productModelList.keySet()) {
+            if (type.equals(entry.getClass().getTypeName())) {
+                return (Map<Integer, ProductModel>) productModelList.get(entry);
+            }
+        }
         return null;
     }
 
